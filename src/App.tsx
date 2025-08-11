@@ -1,12 +1,26 @@
-
+import  {useState} from 'react'
 import './App.css'
 import logo from './assets/logo.ico'
+import GuineaMap from './GuineaMap.jsx'
+import 'leaflet/dist/leaflet.css';
+
+
 
 function App() {
+  type ContentKey = 'Region' | 'Commune' | 'Capteur' | 'Parameter';
+
+const content: Record<ContentKey, React.ReactElement> = {
+  Region: <GuineaMap/>,
+  Commune: <p>CommuneInfo</p>,
+  Capteur: <p>Capteur Coming Soon</p>,
+  Parameter: <p>Parameter Coming soon</p>,
+};
+
+const [selected, setSelected] = useState<ContentKey>('Region');
   return (
       <div> 
         <header style={{
-            position: 'fixed',   // sticks to the top
+            position: 'fixed', 
             top: 0,
             left: 0,
             right: 0,
@@ -35,11 +49,11 @@ function App() {
           padding: '0 1rem',          
         }}
       >
-        {/* Left side - smaller width */}
+
         <div
           style={{
             display: 'flex',
-            flexBasis: '15%',          // fixed 25% width
+            flexBasis: '15%',          
             padding: '.8rem',
             backgroundColor: '#444',
             
@@ -47,23 +61,36 @@ function App() {
             gap: '.8rem',
           }}
         >
-          <button>Region</button>
-          <button>Commune</button>
-          <button>Type</button>
-          <button>Other</button>
+          {(['Region', 'Commune', 'Capteur', 'Parameter'] as ContentKey[]).map((button) => (
+            <button
+              key={button}
+              onClick={() => setSelected(button)}
+              style={{
+                backgroundColor: selected === button ? '#646cff' : '#666',
+                color: 'white',
+                border: 'none',
+                borderRadius: '4px',
+                padding: '0.5rem 1rem',
+                cursor: 'pointer',
+              }}
+            >
+              {button}
+              
+            </button>
+          ))}
         </div>
 
-        {/* Right side - bigger width */}
+
         <div
           style={{
             display: 'flex',
-            flex: '1',               // take remaining space flexibly
+            flex: '1',              
             padding: '1rem',
             backgroundColor: '#bbb',
-            color: '#000',           // make text visible on white background
+            color: '#000',        
           }}
         >
-          <p>Welcome! Start building your app here.</p>
+          {content[selected]}
         </div>
       </div>
 </div>
