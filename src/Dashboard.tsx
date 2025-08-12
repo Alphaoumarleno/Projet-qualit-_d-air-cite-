@@ -47,6 +47,28 @@ export default function DashboardInterface() {
                     <option style={{ color: "black" }} value="Last Month">Last Month</option>
                     </select>
                 </div>
+                <div style ={{display: "flex", alignItems: "flex-end",justifyContent: "flex-end", width: "100%"}}>
+                    <button
+                    style={{
+                        cursor: "pointer",
+                        width:"200px",
+                        height: "40px",
+                        backgroundColor: "#535bf2", 
+                        color: "white",
+                        border: "2px solid #535bf2",
+                        padding: "1rem",
+                        display:"flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        gap: "4rem"
+                    }}
+                    onClick={() => {
+                        alert(`Generating report for ${selectedRegion} over ${timeLength}`);
+                    }}
+                    >
+                    Search Data
+                    </button>
+                </div>
             </div>
 
       <div style={{ marginTop: "1rem" }}>
@@ -54,8 +76,26 @@ export default function DashboardInterface() {
           <strong>{selectedRegion}</strong> ┃ <strong>{timeLength}</strong> 
         </p>
       </div> 
-      <div style={{ marginTop: "1rem" }}>
-        
+      <div style={{ marginTop: "1rem", display: "flex", flexDirection: "row", gap: "1rem" }}>
+        <div className = "CardContainer">      
+            <p><strong>Air Quality Index (AQI):</strong> 50 (Good)
+            </p>
+        </div>
+        <div className = "CardContainer"> 
+            <p>
+            <strong>PM2.5 Level:</strong> 12 µg/m³ (Good)
+            </p>
+        </div>
+        <div className = "CardContainer">
+            <p>
+            <strong>PM10 Level:</strong> 20 µg/m³ (Good)
+            </p>
+        </div>
+      </div>
+      <div>
+        <div className ="GraphContainer" style={{ marginTop: "1rem" }}>
+            <p>Graph Placeholder</p>
+        </div>
       </div>
     </div>
     );

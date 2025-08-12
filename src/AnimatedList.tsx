@@ -58,7 +58,7 @@ const AnimatedList: React.FC<AnimatedListProps> = ({
     "Beyla",
   "Boffa",
   "Boké",
-  "Conakry (capital)",
+  "Conakry",
   "Coyah",
   "Dabola",
   "Dalaba",

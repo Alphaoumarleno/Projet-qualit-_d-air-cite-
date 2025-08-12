@@ -1,15 +1,20 @@
 
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup ,useMap } from 'react-leaflet';
 import { guineaRegions, type RegionInfo} from './guinearegions';
 
 interface GuineaMapProps {
   regionKey: string; // e.g. "Conakry", "Kindia"
 }
 function GuineaMap({regionKey}:GuineaMapProps) {
-  // Default to 'default' region if no key is provided
   if (!regionKey) {
     regionKey = 'default';
   }
+
+function ChangeView({ center, zoom }: { center: [number, number]; zoom: number }) {
+  const map = useMap();
+  map.setView(center, zoom);
+  return null; 
+}
   const region = (guineaRegions as Record<string, RegionInfo>)[regionKey] ?? null;;
 
   return (
@@ -19,6 +24,7 @@ function GuineaMap({regionKey}:GuineaMapProps) {
       scrollWheelZoom={false}
       style={{ height: '100%', width: '100%' }}
     >
+      <ChangeView center={region.center} zoom={region.zoom} />
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

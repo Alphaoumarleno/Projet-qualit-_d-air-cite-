@@ -5,7 +5,7 @@ const regionNames = [
   "Beyla",
   "Boffa",
   "Boké",
-  "Conakry (capital)",
+  "Conakry",
   "Coyah",
   "Dabola",
   "Dalaba",
@@ -68,7 +68,7 @@ export default function CommuneView() {
       </div>
 
       <div style={{ flex: 1, height: '100%' }}>
-        <GuineaMap regionKey={selectedRegion ?? ""} />
+        <GuineaMap regionKey={selectedRegion ?? "default"} />
       </div>
     </div>
   );

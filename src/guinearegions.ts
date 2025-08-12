@@ -9,7 +9,7 @@ export const guineaRegions: Record<string, RegionInfo> = {
   Beyla: { name: 'Beyla', center: [8.9833, -8.2833], zoom: 8 },
   Boffa: { name: 'Boffa', center: [10.1700, -14.3000], zoom: 8 },
   Boké: { name: 'Boké', center: [10.9333, -14.3000], zoom: 8 },
-  Conakry: { name: 'Conakry (capital)', center: [9.6412, -13.5784], zoom: 10 },
+  Conakry: { name: 'Conakry', center: [9.6412, -13.5784], zoom: 10 },
   Coyah: { name: 'Coyah', center: [9.8333, -13.6333], zoom: 10 },
   Dabola: { name: 'Dabola', center: [10.7333, -11.7833], zoom: 10},
   Dalaba: { name: 'Dalaba', center: [11.1833, -12.3833], zoom: 10 },
