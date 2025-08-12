@@ -1,52 +1,33 @@
 import  {useState} from 'react'
 import './App.css'
 import logo from './assets/logo.ico'
-import GuineaMap from './GuineaMap.jsx'
+import GuineaMap from './GuineaMap.tsx'
+import CommuneView from './communeview.tsx'
+import DashboardInterface from './Dashboard.tsx'
 import 'leaflet/dist/leaflet.css';
 
-
+  
 
 function App() {
-  type ContentKey = 'Region' | 'Commune' | 'Capteur' | 'Parameter';
+  type ContentKey = 'Dashboard' | 'Region' | 'Commune' | 'Capteur' | 'Parameter';
 
 const content: Record<ContentKey, React.ReactElement> = {
-  Region: <GuineaMap/>,
-  Commune: <p>CommuneInfo</p>,
+  Dashboard: <DashboardInterface/>,
+  Region: <GuineaMap regionKey='Beyla'/>,
+  Commune: <CommuneView/>,
   Capteur: <p>Capteur Coming Soon</p>,
   Parameter: <p>Parameter Coming soon</p>,
 };
 
-const [selected, setSelected] = useState<ContentKey>('Region');
+const [selected, setSelected] = useState<ContentKey>('Dashboard');
   return (
       <div> 
-        <header style={{
-            position: 'fixed', 
-            top: 0,
-            left: 0,
-            right: 0,
-            height: '10%',
-            backgroundColor: '#333',
-            color: 'white',
-            display: 'flex',
-            alignItems: 'center',
-            padding: '0 1rem',
-            boxShadow: '0 2px 5px rgba(0,0,0,0.3)',
-            justifyContent: "space-between",
-            zIndex: 0,
-      }}>
-        <h1 style={{zIndex:1}}>
-        Sensor Dashboard</h1>
-        <img src={logo} alt="Logo" style={{height: "60px", width: "60px"}} />
-
-      </header>
+        
       <div
         style={{
           display: 'flex',
-          marginTop:'5%',
           height: '100vh',
-          color: 'white',
-          gap: '1rem',                
-          padding: '0 1rem',          
+          color: 'white',          
         }}
       >
 
@@ -61,7 +42,8 @@ const [selected, setSelected] = useState<ContentKey>('Region');
             gap: '.8rem',
           }}
         >
-          {(['Region', 'Commune', 'Capteur', 'Parameter'] as ContentKey[]).map((button) => (
+          <img src={logo} alt="Logo" style={{height: "60px", width: "60px"}} />
+          {(['Dashboard', 'Region', 'Commune', 'Capteur', 'Parameter'] as ContentKey[]).map((button) => (
             <button
               key={button}
               onClick={() => setSelected(button)}
