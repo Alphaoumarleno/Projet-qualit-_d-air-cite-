@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import GuineaMap from './GuineaMap.js';
-import AnimatedList from './AnimatedList.js'
-import { guineaRegions } from './guinearegions.js'; 
+import GuineaMap from './GuineaMap.tsx';
+import AnimatedList from './AnimatedList.tsx'
+import { guineaRegions } from './GuineaGeoData.ts'; 
 
 
 const regionNames = Object.keys(guineaRegions).filter(key => key !== 'default');

@@ -1,9 +1,9 @@
 import  {useState} from 'react'
 import './App.css'
 import logo from './assets/logo.ico'
-
 import RegionView from './RegionView.tsx'
 import DashboardInterface from './Dashboard.tsx'
+import ParameterInterface from './ParameterInterface.tsx'
 import 'leaflet/dist/leaflet.css';
 import VerticalAQIScale from './VerticalAQIScale.tsx'
   
@@ -16,7 +16,7 @@ const content: Record<ContentKey, React.ReactElement> = {
   Region: <RegionView/>,
   Commune:<p>Commune Coming Soon</p> ,
   Capteur: <p>Capteur Coming Soon</p>,
-  Parameter: <p>Parameter Coming soon</p>,
+  Parameter: <ParameterInterface/>,
 };
 
 const [selected, setSelected] = useState<ContentKey>('Dashboard');

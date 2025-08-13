@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
-import { guineaRegions, type RegionInfo } from './guinearegions';
-import { guineaJSON } from './guinearegions';
+import { guineaRegions} from './GuineaGeoData';
+import { guinearegionJSON } from './GuineaGeoData';
 
 interface GuineaMapProps {
   regionKey: string;
@@ -25,8 +25,6 @@ function GuineaMap({ regionKey }: GuineaMapProps) {
     fillOpacity: 0.7,
   };
 };
-
-  // Add labels to each region
   const onEachFeature = (feature:any, layer: any) => {
     const name = feature.properties?.NAME_2 || 'Unknown';
     if (name) {
@@ -57,7 +55,7 @@ function GuineaMap({ regionKey }: GuineaMapProps) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <GeoJSON data={guineaJSON} style={style} onEachFeature={onEachFeature} />
+      <GeoJSON data={guinearegionJSON} style={style} onEachFeature={onEachFeature} />
     </MapContainer>
   );
 }

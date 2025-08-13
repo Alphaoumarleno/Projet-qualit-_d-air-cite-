@@ -1,14 +1,13 @@
 import "./Dashboard.css";
 import {useState} from "react";
-import {guineaRegions,type RegionInfo} from "./guinearegions";
+import {guineaRegions,type RegionInfo} from "./GuineaGeoData";
 import notificationbell from "./assets/notificationbell.svg";
 
 export default function DashboardInterface() {
-    const defaultRegion = guineaRegions.default.name;
+  const defaultRegion = "Conakry";
   const [selectedRegion, setSelectedRegion] = useState(defaultRegion);
   const [timeLength, setTimeLength] = useState("Last 24 Hours");
   const regionsArray = Object.values(guineaRegions);
-
     return(
         <div>
         <div style ={{display: "flex", flexDirection: "row"}}>
@@ -99,10 +98,17 @@ export default function DashboardInterface() {
                 </div>
             </div>
 
-      <div style={{ marginTop: "1rem", marginLeft: "1rem"  }}>
+      <div style={{display: "flex", 
+                flexDirection: "row", 
+                marginTop: "1rem", 
+                marginLeft: "1rem", 
+                marginRight: "1rem",
+                justifyContent: "space-between", 
+                alignItems: "center"}}>
         <p>
           <strong>{selectedRegion}</strong> ┃ <strong>{timeLength}</strong> 
         </p>
+        
       </div> 
       <div style={{ marginTop: "1rem", display: "flex", flexDirection: "row", gap: "1rem" }}>
         <div className = "CardContainer" style={{ marginLeft: "1rem" }}>      
@@ -119,6 +125,7 @@ export default function DashboardInterface() {
             <strong>PM10 Level:</strong> 20 µg/m³ (Good)
             </p>
         </div>
+        
       </div>
       <div>
         <div className ="GraphContainer" style={{ marginTop: "1rem", marginLeft: "1rem"  }}>
