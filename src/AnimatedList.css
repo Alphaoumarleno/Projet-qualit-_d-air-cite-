@@ -1,4 +1,4 @@
-/* Animated List Styles*/
+
 .scroll-list-container {
   position: relative;
   width: 100%;
@@ -68,4 +68,3 @@
   pointer-events: none;
   transition: opacity 0.3s ease;
 }
-/* Animated List Styles*/
