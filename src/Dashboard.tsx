@@ -1,6 +1,7 @@
 import "./Dashboard.css";
 import {useState} from "react";
 import {guineaRegions,type RegionInfo} from "./guinearegions";
+import notificationbell from "./assets/notificationbell.svg";
 
 export default function DashboardInterface() {
     const defaultRegion = guineaRegions.default.name;
@@ -11,17 +12,21 @@ export default function DashboardInterface() {
     return(
         <div>
         <div>
-            <h1 style={{color: "#535bf2", fontWeight: "bold"}} >
+            <h1 style={{color: "#535bf2", fontWeight: "bold", marginLeft: "1rem" }} >
             Dashboard</h1>
-            <p style={{color: "#000232"}}>Analyse Air Quality Data and take action</p>
+            <p style={{color: "#000232",marginLeft: "1rem" }}>Analyse Air Quality Data and take action</p>
         </div>
-        <div className="Container" style={{marginTop: "1rem"}}>
-            <p >Dashboard Content </p>
-                    
+        <div className="Container" style={{marginTop: "1rem",marginLeft: "1rem" }}>
+            <button style={{height: "30px", width: "30px"}}
+            onClick={() => alert("These are your notifications")}
+                >    
+                <img src={notificationbell} alt="Bell" style={{height: "30px", width: "30px"}}
+                    className="Bell_icon" />
+            </button>        
             <p> Hourly report with Report Generator</p>
         </div>
             <div style ={{display: "flex", flexDirection: "row", gap: "1rem", marginTop: "1rem"}}>
-                <div className="Dropdown">
+                <div className="Dropdown" style={{ marginLeft: "1rem"  }}>
                     <select
                     id="region"
                     name="selectRegion"
@@ -56,6 +61,7 @@ export default function DashboardInterface() {
                         backgroundColor: "#535bf2", 
                         color: "white",
                         border: "2px solid #535bf2",
+                        borderRadius: "10px",
                         padding: "1rem",
                         display:"flex",
                         justifyContent: "center",
@@ -63,7 +69,7 @@ export default function DashboardInterface() {
                         gap: "4rem"
                     }}
                     onClick={() => {
-                        alert(`Generating report for ${selectedRegion} over ${timeLength}`);
+                        alert(`Generating report for ${selectedRegion} over ${timeLength}.`);
                     }}
                     >
                     Search Data
@@ -71,13 +77,13 @@ export default function DashboardInterface() {
                 </div>
             </div>
 
-      <div style={{ marginTop: "1rem" }}>
+      <div style={{ marginTop: "1rem", marginLeft: "1rem"  }}>
         <p>
           <strong>{selectedRegion}</strong> ┃ <strong>{timeLength}</strong> 
         </p>
       </div> 
       <div style={{ marginTop: "1rem", display: "flex", flexDirection: "row", gap: "1rem" }}>
-        <div className = "CardContainer">      
+        <div className = "CardContainer" style={{ marginLeft: "1rem" }}>      
             <p><strong>Air Quality Index (AQI):</strong> 50 (Good)
             </p>
         </div>
@@ -93,7 +99,7 @@ export default function DashboardInterface() {
         </div>
       </div>
       <div>
-        <div className ="GraphContainer" style={{ marginTop: "1rem" }}>
+        <div className ="GraphContainer" style={{ marginTop: "1rem", marginLeft: "1rem"  }}>
             <p>Graph Placeholder</p>
         </div>
       </div>

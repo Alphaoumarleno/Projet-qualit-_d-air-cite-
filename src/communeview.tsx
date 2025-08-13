@@ -53,7 +53,7 @@ export default function CommuneView() {
           background: '#eee',
           padding: '1rem',
           overflowY: 'auto',
-          height: "95%",
+          height: "100%",
           borderRadius: 8,
           boxShadow: '0 0 10px rgba(0,0,0,0.1)',
         }}
@@ -67,7 +67,7 @@ export default function CommuneView() {
         />
       </div>
 
-      <div style={{ flex: 1, height: '100%' }}>
+      <div style={{ flex: 1, height: '100%', padding: '.5rem' }}>
         <GuineaMap regionKey={selectedRegion ?? "default"} />
       </div>
     </div>

@@ -1,4 +1,3 @@
-import React from "react";
 
 const aqiLevels = [
   { label: "Good", color: "#009966", max: 50 },
@@ -22,7 +21,6 @@ function VerticalAQIScale({ aqi }: { aqi: number }) {
         gap: 10,
       }}
     >
-      {/* Colored scale with labels inside */}
       <div
         style={{
           position: "relative",
@@ -67,8 +65,6 @@ function VerticalAQIScale({ aqi }: { aqi: number }) {
             );
           })}
       </div>
-
-      {/* Pointer */}
       <div
         style={{
           position: "relative",
