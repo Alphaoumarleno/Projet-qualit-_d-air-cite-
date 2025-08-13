@@ -3,7 +3,6 @@ import GuineaMap from './GuineaMap.tsx';
 import AnimatedList from './AnimatedList.tsx'
 import { guineaRegions } from './GuineaGeoData.ts'; 
 
-
 const regionNames = Object.keys(guineaRegions).filter(key => key !== 'default');
 
 export default function RegionView() {

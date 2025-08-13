@@ -37,12 +37,12 @@ const [selected, setSelected] = useState<ContentKey>('Dashboard');
             flexBasis: '15%',          
             padding: '.8rem',
             backgroundColor: '#444',
-            
             flexDirection: 'column',
-            gap: '.8rem', 
+            justifyContent: 'space-between',
+            alignItems: 'center',
           }}
         >
-          <div style={{display: 'flex', flexDirection:"row"}}>
+          <div style={{display: 'flex', flexDirection:"row", alignItems: 'center'}}>
           <img src={logo} alt="Logo" style={{height: "60px", width: "60px"}} />
           <h1 style={{marginLeft: "0.5rem", fontWeight:"bold",fontSize:"1.75rem"}}>Cite Des Sciences</h1>
           </div>
@@ -58,7 +58,7 @@ const [selected, setSelected] = useState<ContentKey>('Dashboard');
               {button}
             </button>
           ))}
-          <div style ={{marginTop: "125px", padding: "1rem"}}>
+          <div style ={{ padding: "1rem"}}>
             <h2 style={{color: "white", fontWeight: "bold"}}>AQI Scale</h2>
             <VerticalAQIScale aqi={20}/>
           </div>

@@ -1,192 +1,150 @@
-import "./Parameter.css";
-import {useState} from "react";
-import {guineaRegions,type RegionInfo} from "./GuineaGeoData";
-
+import "./Components.css";
+import { useState } from "react";
+import { guineaRegions, type RegionInfo, type VillageInfo } from "./GuineaGeoData";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function Parameter() {
     const [isRegionOpen, setRegionOpen] = useState(false);
     const [isVillageOpen, setVillageOpen] = useState(false);
     const [isCaptureOpen, setCaptureOpen] = useState(false);
 
-    return(
-        <div>   
+    const defaultRegion = "Conakry";
+    const [selectedRegion, setSelectedRegion] = useState(defaultRegion);
+    const [selectedVillage, setSelectedVillage] = useState("");
+    const [startDate, setStartDate] = useState<Date | null>(null);
+    const regionsArray = Object.values(guineaRegions);
+
+    const villagesArray: VillageInfo[] = Object.values(guineaRegions)
+        .flatMap(region => region.villages);
+
+    return (
+        <div>
             <div>
-                <h1 style={{color: "#535bf2", fontWeight: "bold", marginLeft: "1rem" }} >
-                Parameter</h1>
-                <p style={{color: "#000232",marginLeft: "1rem" }}>Add and Change Parameters</p>
+                <h1 style={{ color: "#535bf2", fontWeight: "bold", marginLeft: "1rem" }}>
+                    Parameter
+                </h1>
+                <p style={{ color: "#000232", marginLeft: "1rem" }}>Add and Change Parameters</p>
             </div>
+
+
             <div>
-            <button className="ModalButton"
-                onClick={() => setRegionOpen(true)}
-            >
-                Add New Region
-            </button>
+                <button className="ModalButton" onClick={() => setRegionOpen(true)}>
+                    Add New Region
+                </button>
             </div>
+
 
             {isRegionOpen && (
-            <div
-                style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100vw",
-                height: "100vh",
-                backgroundColor: "rgba(0,0,0,0.5)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                
-                }}
-            >
-                <div
-                style={{
-                    backgroundColor: "white",
-                    padding: "2rem",
-                    width: "400px",
-                    border: "2px solid #535bf2",
-                    borderRadius: "10px",
-                }}
-                >
-                <h2 style= {{marginBottom: "1rem",color: "#535bf2", fontWeight: "bold"}}>Enter Details</h2>
-                <input type="text" placeholder="Enter some info" style={{ width: "100%", marginBottom: "1rem", padding: "0.5rem" }} />
-                <input type="number" placeholder="Enter number" style={{ width: "100%", marginBottom: "1rem", padding: "0.5rem" }} />
-                <div style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}>
-                    <button
-                    style={{ padding: "0.5rem 1rem", cursor: "pointer" }}
-                    onClick={() => setRegionOpen(false)}
-                    >
-                    Cancel
-                    </button>
-                    <button
-                    style={{ padding: "0.5rem 1rem", cursor: "pointer", backgroundColor: "#535bf2", color: "white" }}
-                    onClick={() => {
-                        alert("Details submitted!");
-                        setRegionOpen(false);
-                    }}
-                    >
-                    Submit
-                    </button>
+                <div className="DarkOverlay">
+                    <div className="ModalWindow">
+                        <div className="ModalHeader">Enter Region</div>
+                        <div style={{ padding: "2rem" }}>
+                            <input type="text" placeholder="Enter ID" className="ModalInput" />
+                            <div className="Dropdown">
+                                <select
+                                    id="region"
+                                    name="selectRegion"
+                                    value={selectedRegion}
+                                    onChange={(e) => setSelectedRegion(e.target.value)}
+                                >
+                                    {regionsArray.map((region: RegionInfo) => (
+                                        <option key={region.name} value={region.name} style={{ color: "black" }}>
+                                            {region.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div style={{ display: "flex", justifyContent: "flex-end", gap: "1rem", marginTop: "1rem" }}>
+                                <button className="ModalCancelButton" onClick={() => setRegionOpen(false)}>
+                                    Cancel
+                                </button>
+                                <button className="ModalSubmitButton" onClick={() => { alert("Details submitted!"); setRegionOpen(false); }}>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-            </div>
             )}
+
+
             <div>
-            <button className="ModalButton"
-                onClick={() => setVillageOpen(true)}
-            >
-                Add New Region
-            </button>
-        </div>
+                <button className="ModalButton" onClick={() => setVillageOpen(true)}>
+                    Add New Village
+                </button>
+            </div>
+
 
             {isVillageOpen && (
-            <div
-                style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100vw",
-                height: "100vh",
-                backgroundColor: "rgba(0,0,0,0.5)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                
-                }}
-            >
-                <div
-                style={{
-                    backgroundColor: "white",
-                    padding: "2rem",
-                    width: "400px",
-                    border: "2px solid #535bf2",
-                    borderRadius: "10px",
-                }}
-                >
-                <h2 style= {{marginBottom: "1rem",color: "#535bf2", fontWeight: "bold"}}>Enter Details</h2>
-                <input type="text" placeholder="Enter some info" style={{ width: "100%", marginBottom: "1rem", padding: "0.5rem" }} />
-                <input type="number" placeholder="Enter number" style={{ width: "100%", marginBottom: "1rem", padding: "0.5rem" }} />
-                <div style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}>
-                    <button
-                    style={{ padding: "0.5rem 1rem", cursor: "pointer" }}
-                    onClick={() => setVillageOpen(false)}
-                    >
-                    Cancel
-                    </button>
-                    <button
-                    style={{ padding: "0.5rem 1rem", cursor: "pointer", backgroundColor: "#535bf2", color: "white" }}
-                    onClick={() => {
-                        alert("Details submitted!");
-                        setVillageOpen(false);
-                    }}
-                    >
-                    Submit
-                    </button>
+                <div className="DarkOverlay">
+                    <div className="ModalWindow">
+                        <div className="ModalHeader">Enter Village</div>
+                        <div style={{ padding: "2rem" }}>
+                            <input type="text" placeholder="Enter ID" className="ModalInput" />
+                            <div className="Dropdown">
+                                <select
+                                    id="village"
+                                    name="selectVillage"
+                                    value={selectedVillage}
+                                    onChange={(e) => setSelectedVillage(e.target.value)}
+                                >
+                                    {villagesArray.map((village: VillageInfo) => (
+                                        <option key={village.name} value={village.name} style={{ color: "black" }}>
+                                            {village.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div style={{ display: "flex", justifyContent: "flex-end", gap: "1rem", marginTop: "1rem" }}>
+                                <button className="ModalCancelButton" onClick={() => setVillageOpen(false)}>
+                                    Cancel
+                                </button>
+                                <button className="ModalSubmitButton" onClick={() => { alert("Details submitted!"); setVillageOpen(false); }}>
+                                    Submit
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-            </div>
             )}
+
             <div>
-            <button className="ModalButton"
-                onClick={() => setCaptureOpen(true)}
-            >
-                Add New Sensor
-            </button>
-        </div>
+                <button className="ModalButton" onClick={() => setCaptureOpen(true)}>
+                    Add New Sensor
+                </button>
+            </div>
 
             {isCaptureOpen && (
-            <div
-                style={{
-                position: "fixed",
-                top: 0,
-                left: 0,
-                width: "100vw",
-                height: "100vh",
-                backgroundColor: "rgba(0,0,0,0.5)",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                
-                }}
-            >
-                <div
-                style={{
-                    backgroundColor: "white",
-                    padding: "2rem",
-                    width: "400px",
-                    border: "2px solid #535bf2",
-                    borderRadius: "10px",
-                }}
-                >
-                <h2 style= {{marginBottom: "1rem",color: "#535bf2", fontWeight: "bold"}}>Enter Details</h2>
-                <input type="text" placeholder="Enter some info" style={{ width: "100%", marginBottom: "1rem", padding: "0.5rem" }} />
-                <input type="number" placeholder="Enter number" style={{ width: "100%", marginBottom: "1rem", padding: "0.5rem" }} />
-                <div style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}>
-                    <button
-                    style={{ padding: "0.5rem 1rem", cursor: "pointer" }}
-                    onClick={() => setCaptureOpen(false)}
-                    >
-                    Cancel
-                    </button>
-                    <button
-                    style={{ padding: "0.5rem 1rem", cursor: "pointer", backgroundColor: "#535bf2", color: "white" }}
-                    onClick={() => {
-                        alert("Details submitted!");
-                        setCaptureOpen(false);
-                    }}
-                    >
-                    Submit
-                    </button>
+                <div className="DarkOverlay">
+                    <div className="ModalWindow">
+                        <div className= "ModalHeader">Enter Details</div>
+                        <div style={{ padding: "2rem" }}>
+                        <input type="text" placeholder="Enter Sensor ID" className="ModalInput"/>
+                        <input type="text" placeholder="Enter Sensor Code" className="ModalInput"/>
+                        <input type="text" placeholder="Enter Type" className="ModalInput"/>
+                        <input type="text" placeholder="Enter Village ID" className="ModalInput"/>
+                        <input type="text" placeholder="Enter some info" className="ModalInput"/>
+                        <DatePicker
+                            selected={startDate}
+                            onChange={(date) => setStartDate(date)}
+                            placeholderText="Select a date"
+                            className="ModalDataPicker"
+                            calendarClassName="react-datepicker-custom"
+                        />
+
+                        <div style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}>
+                            <button className = "ModalCancelButton" onClick={() => setCaptureOpen(false)}>
+                                Cancel
+                            </button>
+                            <button className ="ModalSubmitButton" onClick={() => { alert("Details submitted!"); setCaptureOpen(false); }}>
+                                Submit
+                            </button>
+                        </div>
+                        </div>
+                    </div>
                 </div>
-                </div>
-            </div>
             )}
-
         </div>
-
-
-
-
-
-
-    )
+    );
 }

@@ -1,44 +1,33 @@
-import "./Dashboard.css";
+import "./Components.css";
 import {useState} from "react";
 import {guineaRegions,type RegionInfo} from "./GuineaGeoData";
 import notificationbell from "./assets/notificationbell.svg";
-
+import user_icon from "./assets/user_icon.png";
 export default function DashboardInterface() {
   const defaultRegion = "Conakry";
   const [selectedRegion, setSelectedRegion] = useState(defaultRegion);
   const [timeLength, setTimeLength] = useState("Last 24 Hours");
   const regionsArray = Object.values(guineaRegions);
     return(
-        <div>
-        <div style ={{display: "flex", flexDirection: "row"}}>
+        <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column"}}>
+        <div style={{ display: "flex", flexDirection: "row", width: "100%", alignItems: "center", justifyContent: "space-between" }}>
             <div>
-                <h1 style={{color: "#535bf2", fontWeight: "bold", marginLeft: "1rem" }} >
-                Dashboard</h1>
-                <p style={{color: "#000232",marginLeft: "1rem" }}>Analyse Air Quality Data and take action</p>
-
+                <h1 style={{ color: "#535bf2", fontWeight: "bold", margin: "0 1rem 0 1rem" }}>
+                Dashboard
+                </h1>
+                <p style={{ color: "#000232", marginLeft: "1rem", marginTop: "0.25rem" }}>
+                Analyse Air Quality Data and take action
+                </p>    
             </div>
-            <div style ={{display: "flex", justifyContent:"flex-end", alignItems: "center"}} >
-            <button style={{
-                        cursor: "pointer",
-                        width:"40px",
-                        height: "40px",
-                        backgroundColor: "#535bf2", 
-                        color: "white",
-                        border: "2px solid #535bf2",
-                        borderRadius: "10px",
-                        padding: "1rem",
-                        display:"flex",
-                        justifyContent: "flex-end",
-                        alignItems: "center",
-                        gap: "4rem"
-                    }}
-            onClick={() => alert("Log in")}
-                >    
+            <button className="UserButton"
+                onClick={() => alert("Log in")}
+            >
+                <img src={user_icon} alt="Logo" style={{ height: "30px", width: "30px" }} />
             </button>
-            </div>
         </div>
-        <div className="Container" style={{marginTop: "1rem",marginLeft: "1rem" }}>
-            <button style={{height: "30px", width: "30px"}}
+
+        <div className="AlertContainer">
+            <button className="Bell_Button"
             onClick={() => alert("These are your notifications")}
                 >    
                 <img src={notificationbell} alt="Bell" style={{height: "30px", width: "30px"}}
@@ -74,21 +63,7 @@ export default function DashboardInterface() {
                     </select>
                 </div>
                 <div style ={{display: "flex", alignItems: "flex-end",justifyContent: "flex-end", width: "100%"}}>
-                    <button
-                    style={{
-                        cursor: "pointer",
-                        width:"200px",
-                        height: "40px",
-                        backgroundColor: "#535bf2", 
-                        color: "white",
-                        border: "2px solid #535bf2",
-                        borderRadius: "10px",
-                        padding: "1rem",
-                        display:"flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                        gap: "4rem"
-                    }}
+                    <button className= "SearchButton"
                     onClick={() => {
                         alert(`Generating report for ${selectedRegion} over ${timeLength}.`);
                     }}
@@ -128,7 +103,7 @@ export default function DashboardInterface() {
         
       </div>
       <div>
-        <div className ="GraphContainer" style={{ marginTop: "1rem", marginLeft: "1rem"  }}>
+        <div className ="GraphContainer">
             <p>Graph Placeholder</p>
         </div>
       </div>
