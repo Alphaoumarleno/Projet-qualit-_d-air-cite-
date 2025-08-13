@@ -3,7 +3,7 @@ import { guineaRegions, type RegionInfo } from './guinearegions';
 import { guineaJSON } from './guinearegions';
 
 interface GuineaMapProps {
-  regionKey: string; // e.g. "Conakry", "Kindia"
+  regionKey: string;
 }
 
 function GuineaMap({ regionKey }: GuineaMapProps) {
@@ -13,23 +13,22 @@ function GuineaMap({ regionKey }: GuineaMapProps) {
 
   const region = guineaRegions[regionKey] ?? guineaRegions['default'];
 
-  // Style each feature with its specific color
   const style = (feature: any) => {
-    const name = feature.properties.NAME_1 || feature.properties.name;
-    const regionInfo = guineaRegions[name];
-    return {
-      fillColor: regionInfo?.color || '#3388ff',
-      weight: 2,
-      opacity: 1,
-      color: '#fff',
-      dashArray: '3',
-      fillOpacity: 0.7,
-    };
+  const name = feature.properties?.NAME_2;
+  const regionInfo = guineaRegions[name];
+  return {
+    fillColor: regionInfo?.color || '#3388ff',
+    weight: 2,
+    opacity: 1,
+    color: '#fff',
+    dashArray: '3',
+    fillOpacity: 0.7,
   };
+};
 
   // Add labels to each region
-  const onEachFeature = (feature: any, layer: any) => {
-    const name = feature.properties.NAME_1 || feature.properties.name;
+  const onEachFeature = (feature:any, layer: any) => {
+    const name = feature.properties?.NAME_2 || 'Unknown';
     if (name) {
       layer.bindTooltip(name, {
         permanent: true,
@@ -50,7 +49,7 @@ function GuineaMap({ regionKey }: GuineaMapProps) {
     <MapContainer
       center={region.center as [number, number]}
       zoom={region.zoom as number}
-      scrollWheelZoom={false}
+      scrollWheelZoom={true}
       style={{ height: '100%', width: '100%' }}
     >
       <ChangeView center={region.center} zoom={region.zoom} />

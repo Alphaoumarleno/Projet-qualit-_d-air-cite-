@@ -11,10 +11,32 @@ export default function DashboardInterface() {
 
     return(
         <div>
-        <div>
-            <h1 style={{color: "#535bf2", fontWeight: "bold", marginLeft: "1rem" }} >
-            Dashboard</h1>
-            <p style={{color: "#000232",marginLeft: "1rem" }}>Analyse Air Quality Data and take action</p>
+        <div style ={{display: "flex", flexDirection: "row"}}>
+            <div>
+                <h1 style={{color: "#535bf2", fontWeight: "bold", marginLeft: "1rem" }} >
+                Dashboard</h1>
+                <p style={{color: "#000232",marginLeft: "1rem" }}>Analyse Air Quality Data and take action</p>
+
+            </div>
+            <div style ={{display: "flex", justifyContent:"flex-end", alignItems: "center"}} >
+            <button style={{
+                        cursor: "pointer",
+                        width:"40px",
+                        height: "40px",
+                        backgroundColor: "#535bf2", 
+                        color: "white",
+                        border: "2px solid #535bf2",
+                        borderRadius: "10px",
+                        padding: "1rem",
+                        display:"flex",
+                        justifyContent: "flex-end",
+                        alignItems: "center",
+                        gap: "4rem"
+                    }}
+            onClick={() => alert("Log in")}
+                >    
+            </button>
+            </div>
         </div>
         <div className="Container" style={{marginTop: "1rem",marginLeft: "1rem" }}>
             <button style={{height: "30px", width: "30px"}}

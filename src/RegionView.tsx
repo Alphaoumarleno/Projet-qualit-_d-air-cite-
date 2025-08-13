@@ -1,47 +1,12 @@
 import { useState } from 'react';
-import GuineaMap from './GuineaMap.jsx';
-import AnimatedList from './AnimatedList'
-const regionNames = [
-  "Beyla",
-  "Boffa",
-  "Boké",
-  "Conakry",
-  "Coyah",
-  "Dabola",
-  "Dalaba",
-  "Dinguiraye",
-  "Dubréka",
-  "Faranah",
-  "Forécariah",
-  "Fria",
-  "Gaoual",
-  "Guéckédou",
-  "Kankan",
-  "Kérouané",
-  "Kindia",
-  "Kissidougou",
-  "Koubia",
-  "Koundara",
-  "Kouroussa",
-  "Labé",
-  "Lélouma",
-  "Lola",
-  "Macenta",
-  "Mandiana",
-  "Mali",
-  "Mamou",
-  "Nzérékoré",
-  "Pita",
-  "Siguiri",
-  "Télimélé",
-  "Timbo",
-  "Tougué",
-  "Yomou",
-];
+import GuineaMap from './GuineaMap.js';
+import AnimatedList from './AnimatedList.js'
+import { guineaRegions } from './guinearegions.js'; 
 
 
+const regionNames = Object.keys(guineaRegions).filter(key => key !== 'default');
 
-export default function CommuneView() {
+export default function RegionView() {
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
 
 

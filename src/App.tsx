@@ -1,8 +1,8 @@
 import  {useState} from 'react'
 import './App.css'
 import logo from './assets/logo.ico'
-import GuineaMap from './GuineaMap.tsx'
-import CommuneView from './communeview.tsx'
+
+import RegionView from './RegionView.tsx'
 import DashboardInterface from './Dashboard.tsx'
 import 'leaflet/dist/leaflet.css';
 import VerticalAQIScale from './VerticalAQIScale.tsx'
@@ -13,8 +13,8 @@ function App() {
 
 const content: Record<ContentKey, React.ReactElement> = {
   Dashboard: <DashboardInterface/>,
-  Region: <GuineaMap regionKey='default'/>,
-  Commune: <CommuneView/>,
+  Region: <RegionView/>,
+  Commune:<p>Commune Coming Soon</p> ,
   Capteur: <p>Capteur Coming Soon</p>,
   Parameter: <p>Parameter Coming soon</p>,
 };
