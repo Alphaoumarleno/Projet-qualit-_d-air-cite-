@@ -1,9 +1,8 @@
-import regionGeoData from './assets/guineaJSON.json';
-import villageGeoData from './assets/guineavillagesJSON.json';
+import GeoData from './assets/guineaGeoJSON.json';
 import type { FeatureCollection } from 'geojson';
 
-export const guinearegionJSON = regionGeoData as FeatureCollection;
-export const guineavillagesJSON = villageGeoData as FeatureCollection;
+export const guineaGeoJSON = GeoData as FeatureCollection;
+
 
 export interface VillageInfo {
   name: string;
@@ -44,7 +43,7 @@ function getRandomColor(): string {
 export const guineaRegions: Record<string, RegionInfo> = {};
 
 // 1️⃣ Add regions
-guinearegionJSON.features.forEach((feature) => {
+guineaGeoJSON.features.forEach((feature) => {
   const name = feature.properties?.NAME_2 || feature.properties?.name || 'Unknown';
   let center: [number, number] = [9.9456, -9.6966];
   const zoom = 9;
@@ -60,7 +59,7 @@ guinearegionJSON.features.forEach((feature) => {
 });
 
 // 2️⃣ Add villages into the correct region
-guineavillagesJSON.features.forEach((feature) => {
+guineaGeoJSON.features.forEach((feature) => {
   const villageName = feature.properties?.NAME_3 || feature.properties?.name || 'Unknown';
   const parentRegion = feature.properties?.NAME_2 || 'Unknown';
 

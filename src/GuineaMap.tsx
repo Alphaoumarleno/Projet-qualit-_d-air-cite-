@@ -1,6 +1,6 @@
 import { MapContainer, TileLayer, GeoJSON, useMap } from 'react-leaflet';
 import { guineaRegions} from './GuineaGeoData';
-import { guinearegionJSON } from './GuineaGeoData';
+import { guineaGeoJSON } from './GuineaGeoData';
 
 interface GuineaMapProps {
   regionKey: string;
@@ -25,17 +25,22 @@ function GuineaMap({ regionKey }: GuineaMapProps) {
     fillOpacity: 0.7,
   };
 };
-  const onEachFeature = (feature:any, layer: any) => {
-    const name = feature.properties?.NAME_2 || 'Unknown';
-    if (name) {
-      layer.bindTooltip(name, {
-        permanent: true,
-        direction: 'center',
-        className: 'region-label',
-        opacity: 0.9,
-      }).openTooltip();
-    }
-  };
+  const seenNames = new Set<string>();
+
+const onEachFeature = (feature: any, layer: any) => {
+  const name = feature.properties?.NAME_2 || 'Unknown';
+  
+  if (name && !seenNames.has(name)) {
+    seenNames.add(name);
+    
+    layer.bindTooltip(name, {
+      permanent: true,
+      direction: 'center',
+      className: 'region-label',
+      opacity: 0.9,
+    }).openTooltip();
+  }
+};
 
   function ChangeView({ center, zoom }: { center: [number, number]; zoom: number }) {
     const map = useMap();
@@ -55,7 +60,7 @@ function GuineaMap({ regionKey }: GuineaMapProps) {
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-      <GeoJSON data={guinearegionJSON} style={style} onEachFeature={onEachFeature} />
+      <GeoJSON data={guineaGeoJSON} style={style} onEachFeature={onEachFeature} />
     </MapContainer>
   );
 }

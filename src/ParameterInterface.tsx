@@ -122,16 +122,18 @@ export default function Parameter() {
                         <div style={{ padding: "2rem" }}>
                         <input type="text" placeholder="Enter Sensor ID" className="ModalInput"/>
                         <input type="text" placeholder="Enter Sensor Code" className="ModalInput"/>
-                        <input type="text" placeholder="Enter Type" className="ModalInput"/>
-                        <input type="text" placeholder="Enter Village ID" className="ModalInput"/>
-                        <input type="text" placeholder="Enter some info" className="ModalInput"/>
                         <DatePicker
                             selected={startDate}
                             onChange={(date) => setStartDate(date)}
                             placeholderText="Select a date"
                             className="ModalDataPicker"
                             calendarClassName="react-datepicker-custom"
+                            popperPlacement="bottom"
                         />
+                        <input type="text" placeholder="Enter Type" className="ModalInput"/>
+                        <input type="text" placeholder="Enter Village ID" className="ModalInput"/>
+                        <input type="text" placeholder="Enter some info" className="ModalInput"/>
+                        
 
                         <div style={{ display: "flex", justifyContent: "flex-end", gap: "1rem" }}>
                             <button className = "ModalCancelButton" onClick={() => setCaptureOpen(false)}>

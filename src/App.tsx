@@ -52,7 +52,8 @@ const [selected, setSelected] = useState<ContentKey>('Dashboard');
               onClick={() => setSelected(button)}
               style={{
                 backgroundColor: selected === button ? "#666" : '#444',
-                fontWeight: "bold"
+                fontWeight: "bold",
+                fontSize: "1rem",
               }}
             >
               {button}
