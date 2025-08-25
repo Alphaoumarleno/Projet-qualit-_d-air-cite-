@@ -3,20 +3,22 @@ import './App.css'
 import logo from './assets/logo.ico'
 import RegionView from './RegionView.tsx'
 import DashboardInterface from './Dashboard.tsx'
-import ParameterInterface from './ParameterInterface.tsx'
+import CommuneInterface from './Commune.tsx'
+import CapteurInterface from './Capteur.tsx'
+import ProfileInterface from './Profile.tsx'
 import 'leaflet/dist/leaflet.css';
 import VerticalAQIScale from './VerticalAQIScale.tsx'
   
 
 function App() {
-  type ContentKey = 'Dashboard' | 'Region' | 'Commune' | 'Capteur' | 'Parameter';
+  type ContentKey = 'Dashboard' | 'Region' | 'Commune' | 'Capteur' |'Profile';
 
 const content: Record<ContentKey, React.ReactElement> = {
   Dashboard: <DashboardInterface/>,
   Region: <RegionView/>,
-  Commune:<p>Commune Coming Soon</p> ,
-  Capteur: <p>Capteur Coming Soon</p>,
-  Parameter: <ParameterInterface/>,
+  Commune:<p><CommuneInterface/></p> ,
+  Capteur: <p><CapteurInterface/></p>,
+  Profile:<p><ProfileInterface/></p>
 };
 
 const [selected, setSelected] = useState<ContentKey>('Dashboard');
@@ -46,7 +48,7 @@ const [selected, setSelected] = useState<ContentKey>('Dashboard');
           <img src={logo} alt="Logo" style={{height: "60px", width: "60px"}} />
           <h1 style={{marginLeft: "0.5rem", fontWeight:"bold",fontSize:"1.75rem"}}>Cite Des Sciences</h1>
           </div>
-          {(['Dashboard', 'Region', 'Commune', 'Capteur', 'Parameter'] as ContentKey[]).map((button) => (
+          {(['Dashboard', 'Region', 'Commune', 'Capteur', 'Profile'] as ContentKey[]).map((button) => (
             <button className='ColumnButton'
               key={button}
               onClick={() => setSelected(button)}

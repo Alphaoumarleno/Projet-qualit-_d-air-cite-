@@ -185,7 +185,6 @@
   justify-content: center;
   align-items: center;
   margin-bottom: .5rem; 
-  position: static !important
 }
 
 .ModalInput {
@@ -246,4 +245,56 @@ overflow: hidden;
   padding: 0.5rem 1rem;
   cursor: pointer;
   font-size: 1rem;
+}
+
+
+.AddSensorContainer {    
+  width: calc(100% - 2rem);
+  height:100px;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem; 
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: .6rem; 
+  border-radius: 10px;
+  border: 2px solid #535bf2; 
+  box-sizing: border-box; 
+  margin-top: 1rem; 
+  margin-left: 1rem; 
+  margin-right: 1rem;
+}
+.AddCommuneContainer {    
+  width: calc(100% - 2rem);
+  height:100px;
+  display: flex;
+  flex-direction: row;
+  gap: 1rem; 
+  align-items: center;
+  justify-content: space-between;
+  background-color: white;
+  padding: .6rem; 
+  border-radius: 10px;
+  border: 2px solid #535bf2; 
+  box-sizing: border-box; 
+  margin-top: 1rem; 
+  margin-left: 1rem; 
+  margin-right: 1rem;
+}
+.SignInContainer {    
+  width: calc(100%-2rem);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem; 
+  align-items: center; 
+  justify-content: center;
+  background-color: white;
+  padding: .6rem; 
+  border-radius: 10px;
+  border: 2px solid #535bf2; 
+  box-sizing: border-box; 
+  margin-top: 1rem; 
+  margin-left: 1rem; 
+  margin-right: 1rem;
 }
